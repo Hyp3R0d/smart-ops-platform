@@ -1,0 +1,34 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: system-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/smart_ops?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+  config:
+    import:
+      - optional:nacos:system-service.yml
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+springdoc:
+  swagger-ui:
+    enabled: true
+smart:
+  jwt:
+    secret: smart-ops-dev-secret-key-please-change-in-production-123456
+    expire-seconds: 86400
+    issuer: smart-ops
