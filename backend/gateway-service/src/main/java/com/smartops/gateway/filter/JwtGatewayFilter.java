@@ -34,8 +34,8 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
     }
 
     private static final List<String> WHITE_LIST = List.of(
-            "/api/auth/auth/login", "/api/auth/auth/logout",
-            "/api/auth/auth/me",
+            "/api/auth/login", "/api/auth/logout",
+            "/api/auth/me",
             "/v3/api-docs", "/swagger-ui", "/doc.html", "/actuator"
     );
 
