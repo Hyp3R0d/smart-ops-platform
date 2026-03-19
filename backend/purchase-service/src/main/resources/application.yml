@@ -4,20 +4,25 @@ spring:
   application:
     name: purchase-service
   datasource:
-    url: jdbc:mysql://localhost:3306/smart_ops?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/smart_ops?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVERS:localhost:9092}
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: ${NACOS_ADDR:localhost:8848}
       config:
-        server-addr: localhost:8848
+        server-addr: ${NACOS_ADDR:localhost:8848}
   config:
     import:
       - optional:nacos:purchase-service.yml
@@ -32,5 +37,3 @@ smart:
     secret: smart-ops-dev-secret-key-please-change-in-production-123456
     expire-seconds: 86400
     issuer: smart-ops
-  kafka:
-    bootstrap-servers: localhost:9092

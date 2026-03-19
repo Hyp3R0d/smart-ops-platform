@@ -3,6 +3,7 @@ package com.smartops.common.dto;
 import java.time.LocalDateTime;
 
 public class StockAlertMessage {
+    private Long warehouseId;
     private Long materialId;
     private String materialCode;
     private String materialName;
@@ -10,6 +11,14 @@ public class StockAlertMessage {
     private Integer threshold;
     private String message;
     private LocalDateTime alertTime;
+
+    public Long getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(Long warehouseId) {
+        this.warehouseId = warehouseId;
+    }
 
     public Long getMaterialId() {
         return materialId;
